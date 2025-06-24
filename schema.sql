@@ -1,0 +1,46 @@
+-- -- Create database if it doesn't exist
+-- CREATE DATABASE IF NOT EXISTS `tv_channels`;
+-- USE `tv_channels`;
+
+-- -- Drop tables if they exist (clean start)
+-- DROP TABLE IF EXISTS `program_channel`;
+-- DROP TABLE IF EXISTS `programs`;
+-- DROP TABLE IF EXISTS `channels`;
+
+-- -- Table for TV channels
+-- CREATE TABLE `channels` (
+--   `id` INT AUTO_INCREMENT PRIMARY KEY,
+--   `name` VARCHAR(100) UNIQUE NOT NULL,
+--   `photo` VARCHAR(955)
+-- ) ENGINE=InnoDB;
+
+-- -- Table for all programs
+-- CREATE TABLE `programs` (
+--   `id` INT AUTO_INCREMENT PRIMARY KEY,
+--   `priority` INT,
+--   `antenna` VARCHAR(100),
+--   `event` VARCHAR(255),
+--   `title` VARCHAR(255),
+--   `photo` VARCHAR(955),
+--   `type` VARCHAR(100),
+--   `id_sherlock` VARCHAR(100),
+--   `id_vf` VARCHAR(100),
+--   `publication_date` DATE,
+--   `hour` TIME,
+--   `duration` TIME,
+--   `arcom` VARCHAR(255),
+--   `version_st` TINYINT(1),
+--   `version_sme` TINYINT(1),
+--   `version_ad` TINYINT(1),
+--   `version_vm` TINYINT(1),
+--   `days` VARCHAR(50)
+-- ) ENGINE=InnoDB;
+
+-- -- Pivot table for programs and channels
+-- CREATE TABLE `program_channel` (
+--   `program_id` INT NOT NULL,
+--   `channel_id` INT NOT NULL,
+--   PRIMARY KEY (`program_id`, `channel_id`),
+--   FOREIGN KEY (`program_id`) REFERENCES `programs` (`id`) ON DELETE CASCADE,
+--   FOREIGN KEY (`channel_id`) REFERENCES `channels` (`id`) ON DELETE CASCADE
+-- ) ENGINE=InnoDB;

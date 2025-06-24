@@ -1,0 +1,13 @@
+tunnel: tv-tunnel
+credentials-file: C:\Users\Dell\.cloudflared\tunnel-creds.json
+ingress:
+  # Route frontend requests
+  - hostname: tv-app.trycloudflare.com
+    service: http://localhost:5173
+  
+  # Route API requests
+  - service: http://localhost:5000
+    path: /api/*
+  
+  # Fallback rule (always last)
+  - service: http_status:404
